@@ -1,0 +1,43 @@
+#include "ufo.h"
+#include <cmath>
+
+
+Ufo::Ufo(const std::string &pId) {
+    sim = new Ufosim();
+}
+
+Ufo::~Ufo() {
+    delete sim;
+}
+
+const std::string & Ufo::getId() const {
+return id;
+}
+
+
+std::vector<float> Ufo::getPosition() const {
+return {this->sim->getX(), this->sim->getY(),this->sim->getZ()};
+}
+
+float Ufo::getFtime() const {
+    return this->sim->getFtime();
+}
+
+std::vector<float> Ufo::wayPoint(float x1, float y1, float x2, float y2, float h, float phi) {
+    float phirad = phi * (M_PI/ 180.0f);//rechnet phi in radial um
+    float hypotenuse = h/sin(phirad); //länge e
+    float abe = sqrt((hypotenuse*hypotenuse)-(h*h)); //a,b,entfernung
+    float dx  = x2 - x1; //entfernung ad in x
+    float dy  = y2 - y1; //entfernung ad in y
+
+    float ade = sqrt(dx * dx + dy * dy); //a,d entfernung
+
+    // b liegt auf gerade ad, also factor abe auf jeweils x und y
+    float bx = x1 + (dx / ade) * abe;  //faktor abe auf die entfernung con a zu d unter x
+    float by = y1 + (dy / ade) * abe;  //faktor abe auf die entfernung con a zu d unter y
+
+    return {bx, by};
+}
+
+
+
