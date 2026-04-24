@@ -8,7 +8,7 @@ using namespace std; // std:: ersetzt
 
 
 // constructor ID, Typ
-Vertical::Vertical(const string& pId) : Ufo() {
+Vertical::Vertical(const string& pId) : Ufo(pId){
 }
 
 //destructor
@@ -24,13 +24,16 @@ Vertical::~Vertical() {
 
 //methoden
 
-void Vertical::flyToDest(const float x, const float y, const float height, const float speed) { // zu kooridnaten mit gegebener geschwindigkeit
+void Vertical::flyToDest(const float x, const float y, const float height, const float speed) const { // zu kooridnaten mit gegebener geschwindigkeit
+
+    int speed2 = static_cast<int>(std::round(speed)); //rounded float to int
+
     //Aufstieg
-    sim->flyTo(sim->getX(), sim->getY(), height, speed, 0);
+    sim->flyTo(sim->getX(), sim->getY(), height, speed2, 0);
     //FLug
-    sim->flyTo(x, y, height, speed, 0);
+    sim->flyTo(x, y, height, speed2, 0);
     //landung
-    sim->flyTo(x, y, 0.0, speed, 0);
+    sim->flyTo(x, y, 0.0, speed2, 0);
 }
 
 

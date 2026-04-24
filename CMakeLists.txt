@@ -27,6 +27,8 @@ add_executable(pa2
         pa2/ufo.cpp
         pa2/ufosim.h
         pa2/ufosim.cpp
+        pa2/ballistic.cpp
+        pa2/ballistic.h
 
 
 )
@@ -52,6 +54,8 @@ add_executable(pa2_ut
         pa2/ufo.h
         pa2/ufosim.h
         pa2/ufosim.cpp
+        pa2/ballistic.cpp
+        pa2/ballistic.h
 )
 
 
