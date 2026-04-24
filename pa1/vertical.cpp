@@ -1,52 +1,77 @@
 #include "vertical.h"
 #include <cmath>
+#include <numbers>
 
-Vertical::Vertical(const std::string& pId) : id(pId) {
+
+using namespace std; // std:: ersetzt
+
+const string Vertical::type = "vertical";//Type als static variable
+// constructor ID, Typ
+Vertical::Vertical(const string& pId) : id(pId), sim(nullptr) {
     Ufosim::setSpeedup(4);
+    sim = new Ufosim();
 }
 
-std::vector<float> Vertical::getPosition() const {
-    std::vector<float> pos(3);
-    
-    pos[0] = sim.getX();
-    pos[1] = sim.getY();
-    pos[2] = sim.getZ();
-    
-    return pos;
+//destructor
+Vertical::~Vertical() {
+    delete sim;
 }
 
-void Vertical::flyToDest(float x, float y, float height, float speed) {
-    
-    float startX = sim.getX();
-    float startY = sim.getY();
-    
-    //1. hochfliegen
-    sim.flyTo(startX, startY, height, speed, 0);
-    
-    //2. horizontale Bewegung
-    sim. flyTo(x, y, height, speed, 0);
-    
-    //3. landen
-    sim. flyTo(x, y, 0.0f, speed, 0);
-    
+//getter 
+
+string Vertical::getType()  {
+    return type;
 }
 
-std::vector<float> Vertical::wayPoint(float x1, float y1, float x2, float y2, float h, float phi) {
+const string& Vertical::getId() const {
+    return id;
+}
+
+vector<float> Vertical::getPosition() const {
+    float x = sim->getX();
+    float y = sim->getY();
+    float z = sim->getZ();
+    return vector<float>{x, y, z};
+}
+
+float Vertical::getFtime() const { 
+    return sim->getFtime(); 
+}
+
+//endgetter
+
+
+//methoden
+
+void Vertical::flyToDest(const float x, const float y, const float height, const float speed) { // zu kooridnaten mit gegebener geschwindigkeit
+    //Aufstieg
+    sim->flyTo(sim->getX(), sim->getY(), height, speed, 0);
+    //FLug
+    sim->flyTo(x, y, height, speed, 0);
+    //landung
+    sim->flyTo(x, y, 0.0, speed, 0);
+}
+
+vector<float> Vertical::wayPoint(const float x1, const float y1, const float x2, const float y2, const float h, const float phi) { // berechnet koordinaten
+    //A = x1,y1,0 D= x2,y2,0
+   
+    float phirad = phi * (M_PI/ 180.0f);//rechnet phi in radial um
+    float hypotenuse = h/sin(phirad); //länge e
+    float abe = sqrt((hypotenuse*hypotenuse)-(h*h)); //a,b,entfernung
+    float dx  = x2 - x1; //entfernung ad in x
+    float dy  = y2 - y1; //entfernung ad in y
     
-    float rad = phi * (M_PI / 180.0f);
-    
-    float dx = x2 - x1;
-    float dy = y2 - y1;
-    
-    float distance = std::sqrt(dx * dx + dy * dy);
-    
-    float offset = h / std::tan(rad);
-    
-    float normX = dx / distance;
-    float normY = dy / distance;
-    
-    float bx = x1 + normX * offset;
-    float by = x2 + normY * offset;
-    
+    float ade = sqrt(dx * dx + dy * dy); //a,d entfernung
+
+    // b liegt auf gerade ad, also factor abe auf jeweils x und y
+    float bx = x1 + (dx / ade) * abe;  //faktor abe auf die entfernung con a zu d unter x
+    float by = y1 + (dy / ade) * abe;  //faktor abe auf die entfernung con a zu d unter y
+
     return {bx, by};
 }
+
+
+
+
+
+//ende methoden
