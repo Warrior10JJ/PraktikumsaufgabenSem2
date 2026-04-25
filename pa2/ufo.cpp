@@ -2,13 +2,11 @@
 #include <cmath>
 
 
-Ufo::Ufo(const std::string &pId) {
+Ufo::Ufo(const std::string &pId) : id(pId){
     sim = new Ufosim();
 }
 
-Ufo::~Ufo() {
-    delete sim;
-}
+
 
 const std::string & Ufo::getId() const {
 return id;
@@ -23,7 +21,7 @@ float Ufo::getFtime() const {
     return this->sim->getFtime();
 }
 
-std::vector<float> Ufo::wayPoint(float x1, float y1, float x2, float y2, float h, float phi) {
+    std::vector<float> Ufo::wayPoint(float x1, float y1, float x2, float y2, float h, float phi) {
     float phirad = phi * (M_PI/ 180.0f);//rechnet phi in radial um
     float hypotenuse = h/sin(phirad); //länge e
     float abe = sqrt((hypotenuse*hypotenuse)-(h*h)); //a,b,entfernung

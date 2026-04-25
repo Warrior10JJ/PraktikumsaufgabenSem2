@@ -29,6 +29,7 @@ add_executable(pa2
         pa2/ufosim.cpp
         pa2/ballistic.cpp
         pa2/ballistic.h
+        pa2/pa2_main.cpp
 
 
 )

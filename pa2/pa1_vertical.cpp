@@ -24,7 +24,7 @@ Vertical::~Vertical() {
 
 //methoden
 
-void Vertical::flyToDest(const float x, const float y, const float height, const float speed) const { // zu kooridnaten mit gegebener geschwindigkeit
+void Vertical::flyToDest( float x, float y, float height, int speed){ // zu kooridnaten mit gegebener geschwindigkeit
 
     int speed2 = static_cast<int>(std::round(speed)); //rounded float to int
 

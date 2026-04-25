@@ -1,4 +1,3 @@
-#define BOOST_TEST_MAIN
 #include <cmath>
 #include <type_traits>
 #include <vector>
