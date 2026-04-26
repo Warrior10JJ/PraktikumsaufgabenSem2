@@ -21,8 +21,8 @@ add_executable(pa1
 
 add_executable(pa2
         #pa2/pa2_main.cpp
-        pa2/pa1_vertical.h
-        pa2/pa1_vertical.cpp
+        pa2/vertical.h
+        pa2/vertical.cpp
         pa2/ufo.h
         pa2/ufo.cpp
         pa2/ufosim.h
@@ -48,8 +48,8 @@ add_executable(pa1_ut
 
 add_executable(pa2_ut
         test_runner.cpp
-        pa2/pa1_vertical.cpp
-        pa2/pa1_vertical.h
+        pa2/vertical.cpp
+        pa2/vertical.h
         pa2/pa2_utest.cpp
         pa2/ufo.cpp
         pa2/ufo.h

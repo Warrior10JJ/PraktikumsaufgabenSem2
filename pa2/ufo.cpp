@@ -1,11 +1,11 @@
 #include "ufo.h"
 #include <cmath>
 
-
+//constructor mit speedup
 Ufo::Ufo(const std::string &pId) : id(pId){
     sim = new Ufosim();
+    sim->setSpeedup(4);
 }
-
 
 
 const std::string & Ufo::getId() const {
@@ -21,7 +21,7 @@ float Ufo::getFtime() const {
     return this->sim->getFtime();
 }
 
-    std::vector<float> Ufo::wayPoint(float x1, float y1, float x2, float y2, float h, float phi) {
+    std::vector<float> Ufo::wayPoint(const float x1,const float y1,const float x2,const float y2,const float h,const float phi) {
     float phirad = phi * (M_PI/ 180.0f);//rechnet phi in radial um
     float hypotenuse = h/sin(phirad); //länge e
     float abe = sqrt((hypotenuse*hypotenuse)-(h*h)); //a,b,entfernung

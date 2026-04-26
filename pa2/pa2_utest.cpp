@@ -4,7 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include "ufo.h"
 #include "ballistic.h"
-#include "pa1_vertical.h"
+#include "vertical.h"
 
 BOOST_AUTO_TEST_SUITE(pa_utest)
 

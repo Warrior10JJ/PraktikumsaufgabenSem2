@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "pa1_vertical.h"
+#include "vertical.h"
 #include "ballistic.h"
 #include "ufo.h"
 

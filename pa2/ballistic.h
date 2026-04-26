@@ -10,17 +10,17 @@ private:
 
 public:
     //construktor
-    Ballistic(const std::string& pId, float takeOffAngle, float landingAngle);
+    Ballistic(const std::string& pId,const float takeOffAngle,const float landingAngle);
 
     //destruktor
-    ~Ballistic() override;
+    ~Ballistic();
 
 //methodes
     float getTakeOffAngle() const;
     float getLandingAngle() const;
-    void flyToDest(float x, float y, float height, int speed) override;
-    std::vector<float> firstWaypoint(float x, float y, float height) const;
-    std::vector<float> secondWaypoint(float x, float y, float height) const;
+    void flyToDest(const float x,const float y,const float height,const int speed) override;
+    std::vector<float> firstWaypoint(const float x,const float y,const float height) const;
+    std::vector<float> secondWaypoint(const float x,const float y,const float height) const;
 
 };
 

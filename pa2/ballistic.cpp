@@ -3,8 +3,8 @@
 //
 
 #include "ballistic.h"
-
-Ballistic::Ballistic(const std::string &pId, float takeOffAngle, float landingAngle) : Ufo(pId) {
+//constructor
+Ballistic::Ballistic(const std::string &pId,const float takeOffAngle,const float landingAngle) : Ufo(pId) {
     if (0 < takeOffAngle && takeOffAngle <= 90) {
         this->takeOffAngle = takeOffAngle;
     }else {
@@ -17,8 +17,10 @@ Ballistic::Ballistic(const std::string &pId, float takeOffAngle, float landingAn
     }
 }
 
-
-Ballistic::~Ballistic() = default;
+//deconstruktor
+Ballistic::~Ballistic() {
+    delete sim;
+}
 
 float Ballistic::getTakeOffAngle() const {
 return takeOffAngle;
@@ -28,7 +30,7 @@ float Ballistic::getLandingAngle() const {
 return landingAngle;
 }
 
-void Ballistic::flyToDest(float x, float y, float height, int speed) {
+void Ballistic::flyToDest(const float x,const float y,const float height,const int speed) {
     //Aufstieg
     std::vector<float> wp1 = firstWaypoint(x,y,height);
     sim->flyTo(wp1[0], wp1[1], height, speed, speed);
@@ -39,10 +41,10 @@ void Ballistic::flyToDest(float x, float y, float height, int speed) {
     sim->flyTo(x,y,0, speed, 0);
 }
 
-std::vector<float> Ballistic::firstWaypoint(float x, float y, float height) const {//ersten waypoint berechnen, ufo position bis höhe
+std::vector<float> Ballistic::firstWaypoint(const float x,const float y,const float height) const {//ersten waypoint berechnen, ufo position bis höhe
     return wayPoint(sim->getX(), sim->getY(), x, y, height, takeOffAngle);
 }
 
-std::vector<float> Ballistic::secondWaypoint(float x, float y, float height) const {
+std::vector<float> Ballistic::secondWaypoint(const float x,const float y,const float height) const {
     return wayPoint(x, y, sim->getX(), sim->getY(), height, landingAngle);
 }

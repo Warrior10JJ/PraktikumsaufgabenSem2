@@ -26,8 +26,8 @@ class Ufo {
     std::vector<float> getPosition() const;
     float getFtime() const;
 
-    virtual void flyToDest(float x, float y, float height, int speed)=0 ;
+    virtual void flyToDest(const float x,const float y,const float height,const int speed)=0 ;
 
-    static std::vector<float> wayPoint(float x1, float y1, float x2, float y2, float h, float phi);
+    static std::vector<float> wayPoint(const float x1,const float y1,const float x2,const float y2,const float h,const float phi);
 };
 #endif //PRAKTIKUM_UFO_H
