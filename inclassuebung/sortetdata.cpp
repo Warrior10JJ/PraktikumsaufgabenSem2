@@ -12,15 +12,11 @@ vector<int> data;
             iter++;
             data.insert(iter, number);
             cin >> number;
+
         }
         for (const auto& e: data) {
             cout << e << endl;
         }
     }
-
-
-
-
-
 return 0;
 }
