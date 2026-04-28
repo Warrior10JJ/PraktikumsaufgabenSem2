@@ -17,6 +17,7 @@ int main() {
         int zahl = 0;
         std::cout << "0 = Vertical, 1 = Ballistic (Standart = Vertical) / 2 = Exit Sim" << std::endl;
         std::cin >> zahl;
+        //bsp für vektornutzung ufos[zahl]->flyToDest(10,10,3,7);
         if (zahl == 2) {
             std::cout << "Wird Abgebrochen ..." << std::endl;
             break;
