@@ -19,7 +19,7 @@ class Ufo {
     public:
     // constructor+ virtueller destruktor
     Ufo(const std::string& pId);
-    virtual ~Ufo() = default;
+    virtual ~Ufo();
 
     //getter
     const std::string& getId() const;

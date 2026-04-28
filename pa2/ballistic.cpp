@@ -18,8 +18,7 @@ Ballistic::Ballistic(const std::string &pId,const float takeOffAngle,const float
 }
 
 //deconstruktor
-Ballistic::~Ballistic() {
-    delete sim;
+Ballistic::~Ballistic(){
 }
 
 float Ballistic::getTakeOffAngle() const {

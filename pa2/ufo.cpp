@@ -6,7 +6,10 @@ Ufo::Ufo(const std::string &pId) : id(pId){
     sim = new Ufosim();
     sim->setSpeedup(4);
 }
-
+//deconstruktor
+Ufo::~Ufo() {
+    delete sim;
+}
 
 const std::string & Ufo::getId() const {
 return id;

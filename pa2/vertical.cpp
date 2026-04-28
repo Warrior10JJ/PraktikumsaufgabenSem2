@@ -13,7 +13,6 @@ Vertical::Vertical(const string& pId) : Ufo(pId){
 
 //destructor
 Vertical::~Vertical() {
-    delete sim;
 }
 
 

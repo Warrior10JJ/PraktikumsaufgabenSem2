@@ -14,6 +14,7 @@ add_executable(pa1
             pa1/ufosim.h
             pa1/vertical.cpp
             pa1/vertical.h
+        pa3/pa3_utest.cpp
 )
 #
 #include <boost/test/unit_test.hpp>
