@@ -7,7 +7,9 @@ set(BOOST_ROOT "C:/boost_1_90_0/")
 
 include_directories(${BOOST_ROOT})
 
-
+add_executable(inclass
+        inclassuebung/sortetdata.cpp
+)
 add_executable(pa1
             #pa1/pa1_main.cpp
             pa1/ufosim.cpp
