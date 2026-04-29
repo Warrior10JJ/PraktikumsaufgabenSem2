@@ -18,7 +18,7 @@ class Route {
   //deconstructor
   ~Route();
   //methoden
-  void add();
+  void add(const float destX, const float destY);
   std::vector<std::pair<float, float>>* getDestinations() const;
   float getHeight() const;
   void setHeight(const float pHeight);
