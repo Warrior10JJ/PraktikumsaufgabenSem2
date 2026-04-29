@@ -1,5 +1,5 @@
 #include "vertical.h"
-
+#include "ufosim.h"
 
 #include <cmath>
 
@@ -41,9 +41,8 @@ float Vertical::distance(const float x1, const float y1, const float x2, const f
 float gesdistance = h*2; //gesamtdistanc erechnen, ufo started hoch und landed also ersdtmal 2 h
     float diffx = x1 - x2; // differnez x
     float diffy = y1 - y2; // differenz y
-    float diffxpos = std::sqrt(diffx*diffx); //x positiv machen
-    float diffypos = std::sqrt(diffy*diffy); //y positiv machen
-    gesdistance = gesdistance + (diffxpos + diffypos);
+    float grounddistance = std::sqrt((diffx*diffx) + (diffy*diffy));
+    gesdistance = gesdistance + grounddistance;
     return gesdistance;
     // alternativ: return (h*2)+std::sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 }

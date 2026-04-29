@@ -19,11 +19,11 @@ class Route {
   ~Route();
   //methoden
   void add(const float destX, const float destY);
-  std::vector<std::pair<float, float>>* getDestinations() const;
+  const std::vector<std::pair<float, float>>& getDestinations() const;
   float getHeight() const;
   void setHeight(const float pHeight);
-  void setDist(std::function<float(float, float, float, float, float)> pDist);
-  float distance();
+  void setDist(const std::function<float(float, float, float, float, float)> &pDist);
+  float distance()const;
   Route shortestRoute();
 };
 
