@@ -2,7 +2,7 @@
 #include <cmath>
 #include <type_traits>
 #include <vector>
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 #include "ufo.h"
 #include "ballistic.h"
 #include "vertical.h"
