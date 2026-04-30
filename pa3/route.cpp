@@ -1,19 +1,35 @@
-
-
 #include "route.h"
+
 //constructor
-Route::Route(float pHeight, std::function<float(float, float, float, float, float)> pDist) {
+Route::Route(float pHeight, const std::function<float(float, float, float, float, float)> &pDist) {
+    this->height = pHeight;
+    this->dist = pDist;
+    this->destinations = new std::vector<std::pair<float, float>>();
 }
+
 //copyconstructor
-Route::Route(Route &route) {
+Route::Route(const Route &route) {
+    this->height = route.height;
+    this->dist = route.dist;
+
+    if (route.destinations != nullptr) {
+        this->destinations = new std::vector<std::pair<float, float>>(*route.destinations);
+    } else {
+        this->destinations = new std::vector<std::pair<float, float>>();
+    }
+
 }
 //deconstructor
 Route::~Route() {
+    if (this->destinations != nullptr) {//sit desinaitons da?
+        delete this->destinations;
+        this->destinations = nullptr;
+    }
 }
 
 
 //methoden
-void Route::add(const float destX, const float destY) {
+void Route::add(const float destX, const float destY) const {
     this->destinations->emplace_back(destX, destY);
 }
 
@@ -37,7 +53,7 @@ float Route::distance() const {
     if (destinations->empty()) { //falls destinations leer kein flug
         return 0;
     }
-    float gesdistance = 0 ;
+    double gesdistance = 0 ;
     float current_x = 0;
     float current_y = 0;
 
@@ -46,7 +62,7 @@ float Route::distance() const {
         float next_y = target.second;
 
 
-        gesdistance += dist(current_x, current_y, next_x, next_y, height);//dist für gesamtdistanz
+        gesdistance = gesdistance + dist(current_x, current_y, next_x, next_y, height);//dist für gesamtdistanz
 
 
         current_x = next_x; // actuelle pos aktualisieren
@@ -55,25 +71,29 @@ float Route::distance() const {
     //zurueck zzu 0/0/0
     gesdistance = gesdistance+dist(current_x, current_y, 0, 0, height);
 
-    return gesdistance;
+    return static_cast<float> (gesdistance);
 }
 
-Route Route::shortestRoute() {
-    Route besteRoute(*this); //Kopie der route
-    std::sort(destinations->begin(), destinations->end());
-    float mindistance = this->distance();
-    std::vector<std::pair<float, float>> bestfolge = *destinations;// speicherung der aktuell besten routenrheinfolge
+Route Route::shortestRoute() const {
+    std::vector<std::pair<float, float>> copydestinations = *destinations;//arbeitscopy von destinations
+    std::sort(copydestinations.begin(), copydestinations.end()); //copy sortieren
 
-    while (std::next_permutation(destinations->begin(), destinations->end())){
-        float currlenght = this->distance();
-        if (currlenght < mindistance) {
+
+    std::vector<std::pair<float, float>> bestfolge = copydestinations;// speicherung der aktuell besten routenrheinfolge
+    Route copyroute(height, dist); //routencopy
+    *copyroute.destinations = copydestinations; //routencop die sortierten destinations geben
+    float mindistance = this->distance(); //momentan mindestdistanz
+    while (std::next_permutation(copydestinations.begin(), copydestinations.end())){  //jede permutation durchgehen
+        *copyroute.destinations = copydestinations;
+        float currlenght = copyroute.distance();
+
+        if (currlenght < mindistance) {         //austauschen
             mindistance = currlenght;
-            bestfolge = *destinations;
+            bestfolge = copydestinations;
         }
     }
-
-    *(besteRoute.destinations) = bestfolge;
+    Route besteRoute(height, dist);//Kopie der route
+    *besteRoute.destinations = bestfolge;//die beste rheinfolge in die copyroute setzen
 
     return besteRoute;
-
 }

@@ -12,19 +12,19 @@ class Route {
     std::function<float(float, float, float, float, float)> dist;
   public:
   //constructor
-  Route(float pHeight, std::function<float(float, float, float, float, float)> pDist);
+  Route(float pHeight, const std::function<float(float, float, float, float, float)> &pDist);
   //copy constructor
-  Route(Route& route);
+  Route(const Route& route);
   //deconstructor
   ~Route();
   //methoden
-  void add(const float destX, const float destY);
-  const std::vector<std::pair<float, float>>& getDestinations() const;
-  float getHeight() const;
-  void setHeight(const float pHeight);
+  void add(float destX, float destY) const;
+  [[nodiscard]] const std::vector<std::pair<float, float>>& getDestinations() const;
+  [[nodiscard]] float getHeight() const;
+  void setHeight(float pHeight);
   void setDist(const std::function<float(float, float, float, float, float)> &pDist);
-  float distance()const;
-  Route shortestRoute();
+  [[nodiscard]] float distance()const;
+  Route shortestRoute() const;
 };
 
 
