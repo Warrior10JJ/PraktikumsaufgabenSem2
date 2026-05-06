@@ -13,7 +13,7 @@ Route::Route(const Route &route) {
     this->dist = route.dist;
 
     if (route.destinations != nullptr) {
-        this->destinations = new std::vector<std::pair<float, float>>(*route.destinations);
+        this->destinations = new std::vector(*route.destinations);
     } else {
         this->destinations = new std::vector<std::pair<float, float>>();
     }
@@ -75,12 +75,13 @@ float Route::distance() const {
 }
 
 Route Route::shortestRoute() const {
+    Route copyroute(*this); //routencopy
     std::vector<std::pair<float, float>> copydestinations = *destinations;//arbeitscopy von destinations
     std::sort(copydestinations.begin(), copydestinations.end()); //copy sortieren
 
 
     std::vector<std::pair<float, float>> bestfolge = copydestinations;// speicherung der aktuell besten routenrheinfolge
-    Route copyroute(height, dist); //routencopy
+
     *copyroute.destinations = copydestinations; //routencop die sortierten destinations geben
     float mindistance = this->distance(); //momentan mindestdistanz
     while (std::next_permutation(copydestinations.begin(), copydestinations.end())){  //jede permutation durchgehen
@@ -92,8 +93,7 @@ Route Route::shortestRoute() const {
             bestfolge = copydestinations;
         }
     }
-    Route besteRoute(height, dist);//Kopie der route
-    *besteRoute.destinations = bestfolge;//die beste rheinfolge in die copyroute setzen
 
-    return besteRoute;
+    *copyroute.destinations = bestfolge;//die beste rheinfolge in die copyroute setzen
+    return copyroute;
 }

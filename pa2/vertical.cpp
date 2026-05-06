@@ -25,7 +25,7 @@ Vertical::~Vertical() {
 
 void Vertical::flyToDest(const float x,const float y,const float height,const int speed){ // zu kooridnaten mit gegebener geschwindigkeit
 
-    int speed2 = static_cast<int>(std::round(speed)); //rounded float to int
+    int speed2 = speed;  //static_cast<int>(std::round(speed)); //rounded float to int
 
     //Aufstieg
     sim->flyTo(sim->getX(), sim->getY(), height, speed2, 0);
