@@ -1,4 +1,4 @@
-#define BOOST_TEST_MAIN
+// #define BOOST_TEST_MAIN
 #include <cmath>
 #include <type_traits>
 #include <thread>
