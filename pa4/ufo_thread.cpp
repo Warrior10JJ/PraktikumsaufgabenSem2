@@ -15,5 +15,6 @@ void UfoThread::runner(const float x,const float y,const float height,const int 
 void UfoThread::startUfo(const float x,const float y,const float height,const int speed) {
 }
 
-bool UfoThread::getIsFlying() {
+bool UfoThread::getIsFlying() const {
+    return isFlying;
 }

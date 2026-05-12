@@ -15,6 +15,6 @@ public:
     ~UfoThread();
     void runner(const float x,const float y,const float height,const int speed);
     void startUfo(const float x,const float y,const float height,const int speed);
-    bool getIsFlying();
+    bool getIsFlying() const;
 };
 #endif //PRAKTIKUM_UFO_THREAD_H
