@@ -50,6 +50,20 @@ add_executable(pa3
         #pa3/pa3_main.cpp
 )
 
+add_executable(pa4
+        pa4/vertical.cpp
+        pa4/vertical.h
+        pa4/ufo.cpp
+        pa4/ufo.h
+        pa4/ufosim.h
+        pa4/ufosim.cpp
+        pa4/ballistic.cpp
+        pa4/ballistic.h
+        pa4/route.cpp
+        pa4/route.h
+        #pa4/pa4_main.cpp
+)
+
 #unit Tests keine main class
 
 add_executable(pa1_ut
@@ -89,7 +103,20 @@ add_executable(pa3_ut
         pa3/route.h
 )
 
-
+add_executable(pa4_ut
+        test_runner.cpp
+        pa4/vertical.cpp
+        pa4/vertical.h
+        pa4/pa4_utest.cpp
+        pa4/ufo.cpp
+        pa4/ufo.h
+        pa4/ufosim.h
+        pa4/ufosim.cpp
+        pa4/ballistic.cpp
+        pa4/ballistic.h
+        pa4/route.cpp
+        pa4/route.h
+)
 
 
 
