@@ -61,6 +61,8 @@ add_executable(pa4
         pa4/ballistic.h
         pa4/route.cpp
         pa4/route.h
+        pa4/ufo_thread.cpp
+        pa4/ufo_thread.h
         #pa4/pa4_main.cpp
 )
 
@@ -116,6 +118,8 @@ add_executable(pa4_ut
         pa4/ballistic.h
         pa4/route.cpp
         pa4/route.h
+        pa4/ufo_thread.cpp
+        pa4/ufo_thread.h
 )
 
 
