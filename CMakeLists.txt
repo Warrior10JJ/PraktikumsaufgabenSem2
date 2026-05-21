@@ -8,7 +8,7 @@ set(BOOST_ROOT "C:/boost_1_90_0/")
 include_directories(${BOOST_ROOT})
 
 add_executable(inclass
-        inclassuebung/sortetdata.cpp
+        inclassuebung/structtest.c
 )
 add_executable(pa1
             #pa1/pa1_main.cpp
@@ -122,7 +122,22 @@ add_executable(pa4_ut
         pa4/ufo_thread.h
 )
 
-
+add_executable(pa5_ut
+        test_runner.cpp
+        pa5/vertical.cpp
+        pa5/vertical.h
+        pa5/pa5_utest.cpp
+        pa5/ufo.cpp
+        pa5/ufo.h
+        pa5/ufosim.h
+        pa5/ufosim.cpp
+        pa5/ballistic.cpp
+        pa5/ballistic.h
+        pa5/route.cpp
+        pa5/route.h
+        pa5/ufo_thread.cpp
+        pa5/ufo_thread.h
+)
 
 
 
