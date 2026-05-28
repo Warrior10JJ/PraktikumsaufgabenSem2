@@ -6,26 +6,29 @@ UfoThread::UfoThread(Ufo *pUfo): flyThread(nullptr), ufo(pUfo), isFlying(false){
 UfoThread::~UfoThread() {
     if (flyThread != nullptr) {
         if (flyThread->joinable()) {
-            flyThread->join();
+            flyThread->join();//wenn threat noch nciht abgeschlossen, warten bis thrread geschlossen
         }
-        delete flyThread;
+        delete flyThread;//thread löschen
         flyThread = nullptr;
+        isFlying = false;
     }
 }
 
 void UfoThread::runner(const float x,const float y,const float height,const int speed) {
-    isFlying = true; // Flug beginnt
+    isFlying = true;
 
     if (ufo != nullptr) {
-        // Ruft die Fluglogik des UFOs auf (Vertical oder Ballistic)
+        //flug von ufo vertical/ballistic aufrufen
         ufo->flyToDest(x, y, height, speed);
     }
 
-    isFlying = false; // Flug beendet
+    isFlying = false;
 
 }
 
 void UfoThread::startUfo(const float x,const float y,const float height,const int speed) {
+    isFlying = true;
+
     if (flyThread != nullptr) {
         if (flyThread->joinable()) {
             flyThread->join();
@@ -33,8 +36,6 @@ void UfoThread::startUfo(const float x,const float y,const float height,const in
         delete flyThread;
     }
 
-    // Neuen Thread erstellen und runner-Funktion aufrufen
-    // Da runner eine Member-Funktion ist, muss 'this' als Kontext mitgegeben werden
     flyThread = new std::thread(&UfoThread::runner, this, x, y, height, speed);
 }
 

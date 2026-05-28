@@ -17,8 +17,18 @@ Route::Route(const Route &route) {
     } else {
         this->destinations = new std::vector<std::pair<float, float>>();
     }
-
 }
+
+//move constructor
+Route::Route(Route &&route) noexcept {
+    this->height = route.height;
+    this->dist = route.dist;
+    //destinations übernehmen, nicht neu anlegen
+    this->destinations = route.destinations;
+    //alten pointer nullpounter setzen
+    route.destinations = nullptr;
+}
+
 //deconstructor
 Route::~Route() {
     if (this->destinations != nullptr) {//sit desinaitons da?

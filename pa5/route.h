@@ -15,6 +15,8 @@ class Route {
   Route(float pHeight, const std::function<float(float, float, float, float, float)> &pDist);
   //copy constructor
   Route(const Route& route);
+  //moveconstructor
+  Route(Route &&route) noexcept;//noexception thrown, constructor is save and can be treusted so fast
   //deconstructor
   ~Route();
   //methoden

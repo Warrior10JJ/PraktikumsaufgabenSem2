@@ -4,7 +4,6 @@
 #include "ufo.h"
 
 
-
 class UfoThread {
 private:
     std::thread* flyThread;
