@@ -26,7 +26,7 @@ private:
     QLabel *ylabel;
     QLabel *heightlabel;
     QLabel *speedlabel;
-
+    QLabel *outputlabel;
 public:
     //constructor
     MainWidget(QMainWindow *parent = nullptr): QWidget(parent)
@@ -73,12 +73,24 @@ public:
         launchbutton = new QPushButton("LAUNCH");
         launchbutton->setStyleSheet("background-color: black; color:green; font-size: 45px;font-weight: bold;");
 
+        outputlabel = new QLabel("OUTPUT   eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        outputlabel->setWordWrap(true);
+        outputlabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+        outputlabel->setMinimumHeight(90);
+        outputlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray; padding 5p ;");
+        outputlabel->setFrameShape(QFrame::Box);
+        outputlabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
+        outputlabel->setText("\n\n\n");
+
+        connect(launchbutton, SIGNAL(clicked()), this, SLOT(changeText()));
+
         formlayout = new QFormLayout();//formlayout annstatt grid für bessere/ einafache lesbarkeit
         formlayout->addRow(xlabel, xedit);
         formlayout->addRow(ylabel, yedit);
         formlayout->addRow(heightlabel, heightedit);
         formlayout->addRow(speedlabel, speededit);
         formlayout->addRow(launchbutton);
+        formlayout->addRow(outputlabel);
         setLayout(formlayout);
         //connect(startbutton, SIGNAL(clicked()), this, SLOT(changeText()));
     }
@@ -87,7 +99,11 @@ public:
     {
     }
 
-
+private slots:
+    void changeText()
+    {
+        outputlabel->setText("xedit->text()\n\n");
+    }
 
 
 };

@@ -22,7 +22,7 @@ public:
         this->setStyleSheet("background-color: black;");
         this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
         //this->showFullScreen();
-        resize(600, 800);
+        resize(600, 500);
     }
 
     ~MainWindow()
