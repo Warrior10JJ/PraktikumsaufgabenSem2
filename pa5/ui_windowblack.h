@@ -19,7 +19,10 @@ public:
         setWindowIcon(icon);
         mainwidget = new MainWidget(this);
         setCentralWidget(mainwidget);
-        resize(250, 300);
+        this->setStyleSheet("background-color: black;");
+        this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+        //this->showFullScreen();
+        resize(600, 500);
     }
 
     ~MainWindow()

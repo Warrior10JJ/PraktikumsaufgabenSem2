@@ -26,61 +26,51 @@ private:
     QLabel *ylabel;
     QLabel *heightlabel;
     QLabel *speedlabel;
-    QLabel *outputlabel;
+    QLabel *outputlabel1;
+    QLabel *outputlabel2;
+    QLabel *outputlabel3;
 public:
     //constructor
     MainWidget(QMainWindow *parent = nullptr): QWidget(parent)
     {
-        if (parent) {
-            // Teilt Windows mit, dass die Titelleiste dieses Fensters das dunkle System-Design nutzen soll
-            parent->setWindowFlag(Qt::Window);
-
-            // Hinweis: Ab Qt 6.5 erkennt Qt das Windows-Dark-Theme oft automatisch,
-            // wenn die Palette des Hauptfensters dunkel gesetzt ist:
-            QPalette windowPal = parent->palette();
-            windowPal.setColor(QPalette::Window, QColor("#2b2b2b"));
-            parent->setPalette(windowPal);
-        }
-
 
 
 
 
         xedit = new QLineEdit();
-        xedit->setStyleSheet("background-color: black; color: green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        //xedit->setStyleSheet("background-color: black; color: green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
 
         yedit = new QLineEdit();
-        yedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        //yedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
 
         heightedit = new QLineEdit();
-        heightedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        //heightedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
 
         speededit = new QLineEdit();
-        speededit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+       //speededit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
 
         xlabel = new QLabel("X-COORDINATE:");
-        xlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        //xlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
 
         ylabel = new QLabel("Y-COORDINATE:");
-        ylabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        //ylabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
 
         heightlabel = new QLabel("HEIGHT:");
-        heightlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        //heightlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
 
         speedlabel = new QLabel("SPEED:");
-        speedlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        //speedlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
 
         launchbutton = new QPushButton("LAUNCH");
-        launchbutton->setStyleSheet("background-color: black; color:green; font-size: 45px;font-weight: bold;");
+        launchbutton->setStyleSheet("background-color:rgba(225, 225, 225,1);border-radius: 0px;");
 
-        outputlabel = new QLabel("OUTPUT   eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        outputlabel->setWordWrap(true);
-        outputlabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-        outputlabel->setMinimumHeight(90);
-        outputlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray; padding 5p ;");
-        outputlabel->setFrameShape(QFrame::Box);
-        outputlabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Preferred);
-        outputlabel->setText("\n\n\n");
+        outputlabel1 = new QLabel("\n\n");
+        //outputlabel1->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold; border: 1px solid gray;");
+        outputlabel1->setFrameShape(QFrame::Box);
+        outputlabel1->setFrameShadow(QFrame::Plain);
+
+
+
 
         connect(launchbutton, SIGNAL(clicked()), this, SLOT(changeText()));
 
@@ -90,7 +80,9 @@ public:
         formlayout->addRow(heightlabel, heightedit);
         formlayout->addRow(speedlabel, speededit);
         formlayout->addRow(launchbutton);
-        formlayout->addRow(outputlabel);
+        formlayout->addRow(outputlabel1);
+        //formlayout->addRow(outputlabel3);
+        //formlayout
         setLayout(formlayout);
         //connect(startbutton, SIGNAL(clicked()), this, SLOT(changeText()));
     }
@@ -102,7 +94,10 @@ public:
 private slots:
     void changeText()
     {
-        outputlabel->setText("xedit->text()\n\n");
+        launchbutton->setText("LAUNCHING...");
+        outputlabel1->setText(xedit->text() + "\n3\n3");
+        //outputlabel1->setText(yedit->text());
+        //outputlabel1->setText(speededit->text());
     }
 
 
