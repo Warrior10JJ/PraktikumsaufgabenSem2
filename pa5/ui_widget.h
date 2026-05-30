@@ -1,6 +1,7 @@
 #ifndef PRAKTIKUM_UI_WIDGET_H
 #define PRAKTIKUM_UI_WIDGET_H
 #include "ufo_thread.h"
+#include "ufo.h"
 #include <QMainWindow>
 #include <QWidget>
 #include <QLabel>
@@ -9,19 +10,21 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 
+#include "vertical.h"
 
 
 //class mainwidget
 class MainWidget : public QWidget {
     Q_OBJECT
 private:
+   //layout
     QFormLayout *formlayout;
     QLineEdit *xedit;
     QLineEdit *yedit;
     QLineEdit *heightedit;
     QLineEdit *speededit;
     QPushButton *launchbutton;
-    std::string text;
+    //std::string text;
     QLabel *xlabel;
     QLabel *ylabel;
     QLabel *heightlabel;
@@ -29,45 +32,62 @@ private:
     QLabel *outputlabel1;
     QLabel *outputlabel2;
     QLabel *outputlabel3;
+    //attribute
+    Ufo *ufo;
+    UfoThread *uthread;
+
+
+
+
 public:
     //constructor
-    MainWidget(QMainWindow *parent = nullptr): QWidget(parent)
+    MainWidget(QMainWindow *parent = nullptr): QWidget(parent),ufo(nullptr),uthread(nullptr)
     {
+        uthread = new UfoThread(ufo);
+        ufo = new Vertical();
 
 
+
+
+
+        int fontsize = 15;
+        QString editstyle = QString::asprintf("QLineEdit {border: 1px solid gray; border-radius: 0px; font-size: %dpx;} QLineEdit:focus {border: 1px solid #0078d4;}",fontsize);
+        QString labelstyle = QString::asprintf("font-size: %dpx;",fontsize);
+        QString buttonstyle = QString::asprintf("background-color:rgba(225, 225, 225,1);border-radius: 0px;font-size: %dpx;",fontsize);
+        QString outputstyle = QString::asprintf("border: 1px solid black; border-radius: 0px;font-size: %dpx;",fontsize);
 
 
         xedit = new QLineEdit();
-        //xedit->setStyleSheet("background-color: black; color: green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        xedit->setStyleSheet(editstyle);
 
         yedit = new QLineEdit();
-        //yedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        yedit->setStyleSheet(editstyle);
 
         heightedit = new QLineEdit();
-        //heightedit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+        heightedit->setStyleSheet(editstyle);
 
         speededit = new QLineEdit();
-       //speededit->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
+       speededit->setStyleSheet(editstyle);
 
         xlabel = new QLabel("X-COORDINATE:");
-        //xlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        xlabel->setStyleSheet(labelstyle);
 
         ylabel = new QLabel("Y-COORDINATE:");
-        //ylabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        ylabel->setStyleSheet(labelstyle);
 
         heightlabel = new QLabel("HEIGHT:");
-        //heightlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        heightlabel->setStyleSheet(labelstyle);
 
         speedlabel = new QLabel("SPEED:");
-        //speedlabel->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold;");
+        speedlabel->setStyleSheet(labelstyle);
 
         launchbutton = new QPushButton("LAUNCH");
-        launchbutton->setStyleSheet("background-color:rgba(225, 225, 225,1);border-radius: 0px;");
+        launchbutton->setStyleSheet(buttonstyle);
 
-        outputlabel1 = new QLabel("\n\n");
-        //outputlabel1->setStyleSheet("background-color: black; color:green; font-size: 30px;font-weight: bold; border: 1px solid gray;");
-        outputlabel1->setFrameShape(QFrame::Box);
-        outputlabel1->setFrameShadow(QFrame::Plain);
+        outputlabel1 = new QLabel("\n\n\n\n\n");
+        outputlabel1->setStyleSheet(outputstyle);
+        //outputlabel1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        //outputlabel1->setFrameShadow(QFrame::Plain);
 
 
 
@@ -81,8 +101,7 @@ public:
         formlayout->addRow(speedlabel, speededit);
         formlayout->addRow(launchbutton);
         formlayout->addRow(outputlabel1);
-        //formlayout->addRow(outputlabel3);
-        //formlayout
+        formlayout->setVerticalSpacing(10);
         setLayout(formlayout);
         //connect(startbutton, SIGNAL(clicked()), this, SLOT(changeText()));
     }

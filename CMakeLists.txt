@@ -11,7 +11,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
 set(CMAKE_AUTORCC ON)
 
-#find_package(Qt6 COMPONENTS Widgets Core REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core REQUIRED)
 
 
 
@@ -173,11 +173,11 @@ qttest/mainwindow.h
 )
 
 
-#target_link_libraries(qttest PRIVATE Qt6::Widgets Qt6::Core)
-#set_target_properties(qttest PROPERTIES WIN32_EXECUTABLE FALSE)
+target_link_libraries(qttest PRIVATE Qt6::Widgets Qt6::Core)
+set_target_properties(qttest PROPERTIES WIN32_EXECUTABLE FALSE)
 
-#target_link_libraries(pa5 PRIVATE Qt6::Widgets Qt6::Core)
-#set_target_properties(pa5 PROPERTIES WIN32_EXECUTABLE FALSE)
+target_link_libraries(pa5 PRIVATE Qt6::Widgets Qt6::Core)
+set_target_properties(pa5 PROPERTIES WIN32_EXECUTABLE FALSE)
 
 #target_include_directories(pa1_ut PRIVATE ${BOOST_ROOT})
 #target_include_directories(pa2_ut PRIVATE ${BOOST_ROOT})

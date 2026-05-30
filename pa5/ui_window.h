@@ -17,9 +17,9 @@ public:
         QIcon icon("../pa5/thi_icon.png");
         setWindowTitle("UFO");
         setWindowIcon(icon);
-        mainwidget = new MainWidget(this);
+        mainwidget = new MainWidget(this,15);
         setCentralWidget(mainwidget);
-        resize(250, 300);
+        resize(300, 350);
     }
 
     ~MainWindow()
