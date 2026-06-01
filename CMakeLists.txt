@@ -158,7 +158,7 @@ add_executable(pa5
         pa5/ballistic.h
         pa5/route.cpp
         pa5/route.h
-        pa5/ufo_thread.cpp
+        #pa5/ufo_thread.cpp
         pa5/ufo_thread.h
         pa5/ui_main.cpp
         pa5/ui_widget.h
