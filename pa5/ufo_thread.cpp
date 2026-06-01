@@ -1,5 +1,12 @@
 #include "ufo_thread.h"
 //constructor
+
+
+
+
+
+
+
 UfoThread::UfoThread(Ufo *pUfo): flyThread(nullptr), ufo(pUfo), isFlying(false){
 }
 //destructor

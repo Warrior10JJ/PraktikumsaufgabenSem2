@@ -14,17 +14,25 @@ private:
     MainWidget *mainwidget;
 public:
     MainWindow() {
+        int dark = 0;
+        int type = 0;
         QIcon icon("../pa5/thi_icon.png");
         setWindowTitle("UFO");
         setWindowIcon(icon);
-        mainwidget = new MainWidget(this,15);
+        if (dark == 1) {
+            this->setStyleSheet("background-color: black;");
+            this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+            resize(600, 500);
+        } else {
+            resize(300, 250);
+        }
+        mainwidget = new MainWidget(this,type,dark);
         setCentralWidget(mainwidget);
-        resize(300, 350);
     }
 
     ~MainWindow()
     {
-        delete mainwidget;
+        //delete mainwidget;
     }
 
 
