@@ -1,12 +1,16 @@
 #ifndef PRAKTIKUM_UFO_THREAD_H
 #define PRAKTIKUM_UFO_THREAD_H
+#include <QObject>
 #include <thread>
 #include "ufo.h"
 
 
 
-class UfoThread {
-private:
+class UfoThread :public QObject{
+Q_OBJECT
+    signals:
+        void stopped(std::vector<float>);
+    private:
     std::thread* flyThread;
     Ufo* ufo;
     bool isFlying;
@@ -20,14 +24,14 @@ private:
         }
 
         isFlying = false; // Flug beendet
-
+        emit stopped(ufo->getPosition());
     }
 
 public:
     //constructor
     UfoThread(Ufo *pUfo): flyThread(nullptr), ufo(pUfo), isFlying(false){
     }
-   //destructor
+    //destructor
     ~UfoThread() {
         if (flyThread != nullptr) {
             if (flyThread->joinable()) {

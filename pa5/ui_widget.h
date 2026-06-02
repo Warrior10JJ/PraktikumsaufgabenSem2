@@ -7,10 +7,10 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QVBoxLayout>
 #include <QFormLayout>
 #include <QThread>
 #include <QApplication>
+#include <QObject>
 
 #include "ballistic.h"
 #include "vertical.h"
@@ -132,13 +132,32 @@ public:
         formlayout->addRow(outputlabel);
         formlayout->setVerticalSpacing(10);
         setLayout(formlayout);
+
+    //uthread connecten
+        connect(uthread, SIGNAL(stopped(std::vector<float>)), this, SLOT(updatewindow(std::vector<float>)));
     }
     //Deconstructor
     ~MainWidget()
     {
+        delete uthread;
+        delete ufo;
     }
 
 private slots:
+    void updatewindow(std::vector<float> pos) {
+        //std::vector<float> pos = ufo->getPosition();
+        float currentx = pos[0];
+        float currenty = pos[1];
+        float currentheight = pos[2];
+        QString text = QString::asprintf("FLIGHT COMPLETED AT\n POSITION:\n %.2f | %.2f | %.2f meter\n",currentx,currenty,currentheight);
+        outputlabel->setText(text);
+        launchbutton->setText("LAUNCH");
+        launchbutton->setEnabled(true);
+    }
+
+
+
+
     void startUfo()
     {
         launchbutton->setText("LAUNCHING...");
@@ -176,7 +195,7 @@ private slots:
             float currentx = pos[0];
             float currenty = pos[1];
             float currentheight = pos[2];
-            QString text = QString::asprintf("STARTED AT\n POSITION:\n %.2f | %.2f | %.2f meter\n ");
+            QString text = QString::asprintf("STARTED AT\n POSITION:\n %.2f | %.2f | %.2f meter\n",currentx,currenty,currentheight);
             outputlabel->setText(text);
             uthread->startUfo(x,y,height,speed);
 

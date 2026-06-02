@@ -1,15 +1,12 @@
-
-#include <QApplication>
 #include "ui_window.h"
 
-int main(int argc, char *argv[]) {
-    // 1. Die Qt-Anwendung instanziieren
-    QApplication app(argc, argv);
 
-    // 2. Das Hauptfenster erstellen und anzeigen
+int main(int argc, char *argv[]) {
+    // QT starten
+    QApplication app(argc, argv);
+    //fenster erstellen + anzeigen
     MainWindow window;
     window.show();
-
-    // 3. Die Event-Schleife von Qt starten
+    // qt event starten
     return app.exec();
 }
