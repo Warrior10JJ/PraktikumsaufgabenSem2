@@ -1,12 +1,8 @@
 #ifndef PRAKTIKUM_UI_WINDOW_H
 #define PRAKTIKUM_UI_WINDOW_H
-
-#include <QMainWindow>
 #include "ui_widget.h"
 
-
-
-//classe bekommt qmainwindow + die widgests welche in uiwidget definiert
+//klasse bekommt qmainwindow + die widgests welche in uiwidget definiert
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -19,7 +15,7 @@ public:
         QIcon icon("../pa5/thi_icon.png");
         setWindowTitle("UFO");
         setWindowIcon(icon);
-        if (dark == 1) {
+        if (dark == 1) {//kleine spielerei
             this->setStyleSheet("background-color: black;");
             this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
             resize(600, 500);
@@ -32,7 +28,7 @@ public:
 
     ~MainWindow()
     {
-        //delete mainwidget;
+        //delete mainwidget;, muss durch qt aber nicht sein
     }
 
 

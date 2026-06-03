@@ -7,23 +7,23 @@
 
 
 class UfoThread :public QObject{
-Q_OBJECT
-    signals:
-        void stopped(std::vector<float>);
-    private:
+    Q_OBJECT
+        signals:
+            void stopped(std::vector<float>);
+private:
     std::thread* flyThread;
     Ufo* ufo;
     bool isFlying;
 
     void runner(const float x,const float y,const float height,const int speed) {
-        isFlying = true; // Flug beginnt
+        isFlying = true;
 
         if (ufo != nullptr) {
-            // Ruft die Fluglogik des UFOs auf (Vertical oder Ballistic)
+            //flug von ufo vertical/ballistic aufrufen
             ufo->flyToDest(x, y, height, speed);
         }
 
-        isFlying = false; // Flug beendet
+        isFlying = false;
         emit stopped(ufo->getPosition());
     }
 
@@ -50,9 +50,6 @@ public:
             }
             delete flyThread;
         }
-
-        // Neuen Thread erstellen und runner-Funktion aufrufen
-        // Da runner eine Member-Funktion ist, muss 'this' als Kontext mitgegeben werden
         flyThread = new std::thread(&UfoThread::runner, this, x, y, height, speed);
     }
 

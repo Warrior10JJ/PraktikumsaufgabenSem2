@@ -5,8 +5,8 @@ int main(int argc, char *argv[]) {
     // QT starten
     QApplication app(argc, argv);
     //fenster erstellen + anzeigen
-    MainWindow window;
-    window.show();
+    MainWindow w;
+    w.show();
     // qt event starten
     return app.exec();
 }

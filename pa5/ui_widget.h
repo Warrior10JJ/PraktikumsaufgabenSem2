@@ -66,8 +66,6 @@ public:
         QString labelstyle;
         QString buttonstyle;
         QString outputstyle;
-        QString buttonstyle2;
-
 
 
 
@@ -76,19 +74,14 @@ public:
             editstyle = QString::asprintf("background-color: black; color: green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
             labelstyle = QString::asprintf("background-color: black; color:green; font-size: 30px;font-weight: bold;");
             buttonstyle = QString::asprintf("background-color: black; color:green; font-size: 45px;font-weight: bold;");
-            buttonstyle2 = QString::asprintf("background-color: black; color:green; font-size: 45px;font-weight: bold;");
             outputstyle = QString::asprintf("background-color: black; color:green; font-size: 30px;font-weight: bold; border: 1px solid gray;");
         }else{
             int fontsize = 15;
             editstyle = QString::asprintf("QLineEdit {border: 1px solid gray; border-radius: 0px; font-size: %dpx;} QLineEdit:focus {border: 1px solid #0078d4;}",fontsize);
             labelstyle = QString::asprintf("font-size: %dpx;",fontsize);
             buttonstyle = QString::asprintf("background-color:rgba(175, 175, 175,1);border-radius: 0px;font-size: %dpx;",fontsize);
-            buttonstyle2 = QString::asprintf("background-color:rgba(225, 225, 225,1);border-radius: 0px;font-size: %dpx;",fontsize);
             outputstyle = QString::asprintf("border: 1px solid black; border-radius: 0px;font-size: %dpx;",fontsize);
         }
-
-
-
 
         xedit = new QLineEdit();
         xedit->setStyleSheet(editstyle);
@@ -117,7 +110,7 @@ public:
         launchbutton = new QPushButton("LAUNCH");
         launchbutton->setStyleSheet(buttonstyle);
 
-        outputlabel = new QLabel("3\n3\n3\n");
+        outputlabel = new QLabel("\n\n\n");
         outputlabel->setStyleSheet(outputstyle);
         outputlabel->setAlignment( Qt::AlignCenter);
 
@@ -136,8 +129,8 @@ public:
     //uthread connecten
         connect(uthread, SIGNAL(stopped(std::vector<float>)), this, SLOT(updatewindow(std::vector<float>)));
     }
-    //Deconstructor
-    ~MainWidget()
+    // deconstructor
+    ~MainWidget ()
     {
         delete uthread;
         delete ufo;
