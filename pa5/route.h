@@ -21,7 +21,7 @@ class Route {
   ~Route();
   //methoden
   void add(float destX, float destY) const;
-  [[nodiscard]] const std::vector<std::pair<float, float>>& getDestinations() const;
+  [[nodiscard]] const std::vector<std::pair<float, float>>& getDestinations() const; // nodiscard, value muss bei funktionsaufruf genutz werden, funktion darf also nicht einfach so abgerufen werden, hat ide als good coding hinzugefügt
   [[nodiscard]] float getHeight() const;
   void setHeight(float pHeight);
   void setDist(const std::function<float(float, float, float, float, float)> &pDist);

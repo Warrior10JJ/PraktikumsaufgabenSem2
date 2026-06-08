@@ -21,7 +21,7 @@ class MainWidget : public QWidget {
     Q_OBJECT
 private:
    //layout
-    QFormLayout *formlayout;
+    QFormLayout *formlayout;//formlure/text->eingabe
     QLineEdit *xedit;
     QLineEdit *yedit;
     QLineEdit *heightedit;
@@ -44,10 +44,6 @@ public:
     //constructor
     MainWidget(QMainWindow *parent = nullptr, int type =0,int dark =0): QWidget(parent),ufo(nullptr),uthread(nullptr)
     {
-
-
-
-
         std::string pid = "ID1";
         if (type == 0) {
             ufo = new Vertical(pid);
@@ -66,10 +62,6 @@ public:
         QString labelstyle;
         QString buttonstyle;
         QString outputstyle;
-
-
-
-
         if (dark == 1) {
             editstyle = QString::asprintf("background-color: black; color: green; font-size: 30px;font-weight: bold;border: 1px solid gray;");
             labelstyle = QString::asprintf("background-color: black; color:green; font-size: 30px;font-weight: bold;");

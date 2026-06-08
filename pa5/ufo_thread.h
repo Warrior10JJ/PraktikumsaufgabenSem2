@@ -4,8 +4,6 @@
 #include <thread>
 #include "ufo.h"
 
-
-
 class UfoThread :public QObject{
     Q_OBJECT
         signals:

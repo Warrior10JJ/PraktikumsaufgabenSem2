@@ -20,7 +20,7 @@ Route::Route(const Route &route) {
 }
 
 //move constructor
-Route::Route(Route &&route) noexcept {
+Route::Route(Route &&route)  noexcept{      //noexcept, kein absturz oder exception, da kein neuer speicher belegt, construktor ist sicher -> keine ueberprüfung durch den compiler, daher schnell
     this->height = route.height;
     this->dist = route.dist;
     //destinations übernehmen, nicht neu anlegen
@@ -85,7 +85,7 @@ float Route::distance() const {
 }
 
 Route Route::shortestRoute() const {
-    Route copyroute(*this); //routencopy
+    Route copyroute(*this); //routencopy mit copyconstr.
     std::vector<std::pair<float, float>> copydestinations = *destinations;//arbeitscopy von destinations
     std::sort(copydestinations.begin(), copydestinations.end()); //copy sortieren
 
@@ -105,5 +105,5 @@ Route Route::shortestRoute() const {
     }
 
     *copyroute.destinations = bestfolge;//die beste rheinfolge in die copyroute setzen
-    return copyroute;
+    return copyroute;//rückgabe ueber move construktor, kein kopieren
 }
