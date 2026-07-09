@@ -170,6 +170,11 @@ qttest/mainwidget.h
 qttest/mainwindow.h
 )
 
+add_executable(Blatt1
+        uebung_klausur/Blatt1/pemploy.cpp
+        uebung_klausur/Blatt1/pemploy.h
+)
+
 
 target_link_libraries(qttest PRIVATE Qt6::Widgets Qt6::Core)
 set_target_properties(qttest PROPERTIES WIN32_EXECUTABLE FALSE)

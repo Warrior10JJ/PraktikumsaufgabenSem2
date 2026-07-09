@@ -46,7 +46,7 @@ public:
     {
         std::string pid = "ID1";
         if (type == 0) {
-            ufo = new Vertical(pid);
+            ufo = new Vertical(pid);//hier vertical or ballistic
             printf("Ufo started Vertical");
         } else {
             if (type == 1) {
