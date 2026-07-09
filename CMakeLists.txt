@@ -16,7 +16,7 @@ find_package(Qt6 COMPONENTS Widgets Core REQUIRED)
 
 
 add_executable(inclass
-        prog1uebung/speicher.c
+        inclassuebung/Grammschmidverfahren.cpp
 )
 add_executable(pa1
             #pa1/pa1_main.cpp
